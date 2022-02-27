@@ -14,6 +14,16 @@ config/name="Shooter_Test"
 run/main_scene="res://Level.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/fullscreen=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
+[global]
+
+fullscreen=false
+
 [input]
 
 ui_left={

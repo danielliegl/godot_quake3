@@ -30,5 +30,5 @@ func _enter_tree():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	self.rotation.z = lerp_angle(self.rotation.z, deg2rad(-1.5 * Player.camera_tilt_direction), 0.01)
+	self.rotation.z = lerp_angle(self.rotation.z, deg2rad(-3 * Player.camera_tilt_direction), 0.01)
 	return
