@@ -7,6 +7,7 @@ size = Vector3( 30, 1, 30 )
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 10, 10, 10 )
 
 [sub_resource type="BoxShape" id=2]
 extents = Vector3( 15, 0.5, 15 )
