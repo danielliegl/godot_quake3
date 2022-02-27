@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=2]
+
+[node name="Level" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441578, 0 )
+
+[node name="Floor" parent="." instance=ExtResource( 2 )]
+transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0.108272, -0.853035, -0.0417099 )
+
+[node name="Floor2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.364649, -0.931145, 0, 0.931145, 0.364649, 0, 0, 0, 1, 9.01669, -8.79639, 3.8217 )
+
+[node name="Floor3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.5, 0, 0, 0, 2, 0, 0, 0, 0.5, 4.94453, 0.565181, 8.96105 )
