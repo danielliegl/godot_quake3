@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://PlayerCamera.gd" type="Script" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
 [ext_resource path="res://hand.png" type="Texture" id=3]
+[ext_resource path="res://Raygun.gd" type="Script" id=4]
+[ext_resource path="res://sounds/railgun_shoot.tres" type="AudioStream" id=5]
+[ext_resource path="res://addons/LineRenderer/LineRenderer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://textures/weapons/raygun_shot.png" type="Texture" id=7]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 7 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -27,11 +34,6 @@ __meta__ = {
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.6818, 0 )
 script = ExtResource( 1 )
 
-[node name="ViewModel" type="AnimatedSprite" parent="Camera"]
-position = Vector2( 721, 484 )
-scale = Vector2( 0.498047, 0.498047 )
-frames = SubResource( 2 )
-
 [node name="Speedometer" type="Label" parent="Camera"]
 margin_left = 439.0
 margin_top = 437.0
@@ -42,6 +44,30 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Railgun" type="Node" parent="Camera"]
+script = ExtResource( 4 )
+
+[node name="LineRenderer" parent="Camera/Railgun" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.125448 )
+visible = false
+material_override = SubResource( 3 )
+cast_shadow = 0
+
+[node name="ViewModel" type="AnimatedSprite" parent="Camera/Railgun"]
+position = Vector2( 721, 484 )
+scale = Vector2( 0.498047, 0.498047 )
+frames = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Camera/Railgun"]
+stream = ExtResource( 5 )
+volume_db = -11.361
+
+[node name="RailTimer" type="Timer" parent="Camera/Railgun"]
+wait_time = 1.5
+one_shot = true
+
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.12367, 0 )
 shape = SubResource( 1 )
+
+[connection signal="timeout" from="Camera/Railgun/RailTimer" to="Camera/Railgun" method="_on_RailTimer_timeout"]
